@@ -76,4 +76,62 @@ void Search_menu()
 
     
 
+void Update_menu()
+{
+    int count = 0, i = 1;
+    char updateStatus;
+    FILE *file = fopen("makiancode.csv", "r");
+    int num;
+    char line[200];
+    printf("Update data");
+    while(fgets(line, sizeof(line), file) != NULL)
+    {
+        if(count < 1){
+            printf("+----------+------------+-------------+----------------+\n");
+            printf("| Seller Name  | Product Type  | Rating | Evaluation date  |\n");
+            printf("+----------+------------+-------------+----------------+\n");
+        }
+            
+        char *ApplicantName = strtok(line, ",");
+        char *CareerType = strtok(NULL, ",");
+        char *Advice = strtok(NULL, ",");
+        char *AdviceDate = strtok(NULL, "\n");
+
+        printf("| %-8s | %-14s | %-6s | %-16s | %-3d |\n", ApplicantName, CareerType, Advice, AdviceDate, i);
+        printf("+----------+------------+-------------+----------------+\n");
+        count++;
+        i++;
+    }
+}
+
+void menu() // แบบคร่าวๆ
+{
+
+    int select;
+    printf("\n=== Adive Career ===\n");
+    printf("1.Add \n");
+    printf("2.Search menu\n");
+    printf("3.Update menu\n");
+    printf("4.Delete menu\n");
+    printf("please select the menu : ");
+    scanf("%d",&select);
+        switch (select)
+        {
+            case 1:Add_menu();
+            break;
+            case 2:Search_menu();
+            break;
+            case 3:Update_menu();
+            break;
+            //case 4:(Delete_menu); //จะมาทำอีกที
+            // break;
+
+        }
+      
+}
+int main()
+{
+    menu();
+    return 0;
+}
   
